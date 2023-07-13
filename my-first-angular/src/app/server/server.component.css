@@ -1,0 +1,9 @@
+.greater-than-5 {
+  background-color: blue;
+  color: white;
+}
+
+.smaller-than-5 {
+  background-color: white;
+  color: blue;
+}

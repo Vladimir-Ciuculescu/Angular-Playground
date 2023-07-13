@@ -1,0 +1,13 @@
+<button (click)="onToggleVisible()">Display details</button>
+<button (click)="onIncrementLog()">Increment log</button>
+<p *ngIf="visible; else hidden">This is the secret content</p>
+<ng-template #hidden>
+  <p>This is what is being shown when not visible</p>
+</ng-template>
+
+<p
+  *ngFor="let log of logs; let i = index"
+  [ngClass]="i >= 5 ? 'greater-than-5' : 'smaller-than-5'"
+>
+  {{ log }}
+</p>

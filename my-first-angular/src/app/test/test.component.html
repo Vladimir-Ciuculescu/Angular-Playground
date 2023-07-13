@@ -1,0 +1,8 @@
+<p
+  [ngStyle]="{
+    backgroundColor: getTestStatus() === 'passed' ? 'green' : 'red'
+  }"
+  [ngClass]="getTestStatus() === 'passed' ? 'success' : 'fail'"
+>
+  The status of the test
+</p>

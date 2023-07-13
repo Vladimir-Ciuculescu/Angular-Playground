@@ -1,0 +1,15 @@
+.fail {
+  border-width: 5px;
+  border-color: aqua;
+  border-style: double;
+  color: black;
+  width: 100px;
+  height: 100px;
+}
+
+.success {
+  border-width: 10px;
+  border-color: brown;
+  color: pink;
+  border-style: groove;
+}
