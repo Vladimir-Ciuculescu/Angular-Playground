@@ -1,12 +1,21 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Output,
+  ViewEncapsulation,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 
 @Component({
   selector: 'app-cockpit',
   templateUrl: './cockpit.component.html',
   styleUrls: ['./cockpit.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class CockpitComponent {
-  @Output() serverCreated = new EventEmitter<{
+  //You can create aliases for both Input and Output
+  @Output('serverEvent') serverCreated = new EventEmitter<{
     serverName: string;
     serverContent: string;
   }>();
@@ -16,12 +25,13 @@ export class CockpitComponent {
     serverContent: string;
   }>();
 
+  @ViewChild('serverContent', { static: true }) serverReference: ElementRef;
+
   newServerName = '';
   newServerContent = '';
 
   onAddServer() {
-    console.log('awd');
-
+    console.log(this.serverReference);
     this.serverCreated.emit({
       serverName: this.newServerName,
       serverContent: this.newServerContent,
