@@ -9,6 +9,13 @@ import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.com
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
+import { FormsModule } from '@angular/forms';
+import { BasicHighLightDirective } from './basic-highlight/basic-highlight.directive';
+import { BetterHighlightDirective } from './better-highlight/better-highlight.directive';
+import { UnlessDirective } from './unless/unless.directive';
+import { DropdownDirective } from './dropdown/dropdown.directive';
+import { RecipeService } from './recipes/recipe.service';
+import { ShoppingListService } from './shopping-list/shopping-list.service';
 
 @NgModule({
   declarations: [
@@ -20,9 +27,13 @@ import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-it
     RecipeItemComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
+    BasicHighLightDirective,
+    BetterHighlightDirective,
+    UnlessDirective,
+    DropdownDirective,
   ],
-  imports: [BrowserModule],
-  providers: [],
+  imports: [BrowserModule, FormsModule],
+  providers: [ShoppingListService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

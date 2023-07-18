@@ -6,11 +6,16 @@
   <hr />
   <div class="row">
     <div class="col-xs-12">
+      <button class="btn btn-primary" (click)="changeFirstName()">
+        Change
+      </button>
+      <button class="btn btn-danger" (click)="onDestroyFirst()">Destroy</button>
       <app-server-element
         *ngFor="let serverElement of serverElements"
         [serverElement]="serverElement"
+        [name]="serverElement.name"
       >
-        <p>
+        <p #paragraphContent>
           <strong *ngIf="serverElement.type === 'server'" style="color: red">{{
             serverElement.type
           }}</strong>
@@ -20,5 +25,15 @@
         </p>
       </app-server-element>
     </div>
+  </div>
+  <app-game-control
+    (intervalEmitter)="onIntervalFired($event)"
+  ></app-game-control>
+
+  <div *ngFor="let number of numbers">
+    <app-odd *ngIf="number % 2 === 0; else even" [number]="number"></app-odd>
+    <ng-template #even>
+      <app-even [number]="number"></app-even>
+    </ng-template>
   </div>
 </div>

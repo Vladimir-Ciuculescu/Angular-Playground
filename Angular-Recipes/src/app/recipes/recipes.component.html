@@ -4,7 +4,14 @@
       <app-recipe-list></app-recipe-list>
     </div>
     <div class="col-md-7">
-      <app-recipe-detail></app-recipe-detail>
+      <ng-container *ngIf="selectedRecipe; else noRecipeSelected">
+        <app-recipe-detail
+          [selectedRecipe]="selectedRecipe"
+        ></app-recipe-detail>
+      </ng-container>
+      <ng-template #noRecipeSelected>
+        <p>Please select a template</p>
+      </ng-template>
     </div>
   </div>
 </div>

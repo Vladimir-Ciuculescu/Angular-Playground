@@ -6,7 +6,7 @@
 
 <div class="row">
   <div class="col-xl-12">
-    <h1>Recipe name</h1>
+    <h1>{{ selectedRecipe.name }}</h1>
   </div>
 </div>
 
@@ -14,6 +14,7 @@
   <div class="col-xl-12">
     <div class="dropdown">
       <button
+        appDropdown
         class="btn btn-secondary dropdown-toggle"
         type="button"
         id="dropdownMenuButton1"
@@ -23,16 +24,29 @@
         Dropdown button
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
+        <li>
+          <a
+            class="dropdown-item"
+            href="#"
+            (click)="onAddToShoppingList(selectedRecipe.ingredients)"
+            >To Shopping List</a
+          >
+        </li>
+        <li><a class="dropdown-item" href="#">Edit Recipe</a></li>
+        <li><a class="dropdown-item" href="#">Delete Recipe</a></li>
       </ul>
     </div>
   </div>
 </div>
 <div class="row">
-  <div class="col-xl-12">Description</div>
+  <div class="col-xl-12">{{ selectedRecipe.description }}</div>
 </div>
 <div class="row">
-  <div class="col-xl-12">Ingredients</div>
+  <div class="col-xl-12">
+    <ul>
+      <li *ngFor="let ingredient of selectedRecipe.ingredients">
+        {{ ingredient.name }} - {{ ingredient.amount }}
+      </li>
+    </ul>
+  </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   title = 'ceva';
+  @Output() onPathSelected = new EventEmitter<string>();
+
+  onSelect(path: string) {
+    this.onPathSelected.emit(path);
+  }
 }

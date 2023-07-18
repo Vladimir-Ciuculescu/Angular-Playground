@@ -18,6 +18,11 @@ export class AppComponent {
     },
   ];
 
+  count: number = 1;
+  oddNumbers: number[] = [];
+  evenNumbers: number[] = [];
+  numbers: number[] = [];
+
   onServerAdded(serverData: { serverName: string; serverContent: string }) {
     this.serverElements.push({
       type: 'server',
@@ -35,5 +40,23 @@ export class AppComponent {
       name: bluePrintData.serverName,
       content: bluePrintData.serverContent,
     });
+  }
+
+  changeFirstName() {
+    this.serverElements[0].name = 'changed' + this.count;
+    this.count++;
+  }
+
+  onDestroyFirst() {
+    this.serverElements.splice(0, 1);
+  }
+
+  onIntervalFired(e: number) {
+    // if (e % 2 == 0) {
+    //   this.evenNumbers.push(e);
+    // } else {
+    //   this.oddNumbers.push(e);
+    // }
+    this.numbers.push(e);
   }
 }
