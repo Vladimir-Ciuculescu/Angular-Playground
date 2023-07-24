@@ -14,31 +14,28 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="#" (click)="onSelect('recipe')">Recipes</a>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/recipes']">Recipes</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" (click)="onSelect('shopping-list')"
-            >Shopping List</a
-          >
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/shopping-list">Shopping List</a>
         </li>
       </ul>
       <ul class="navbar navbar-nav navbar-right">
         <div class="dropdown">
           <button
+            appDropdown
             class="btn btn-secondary dropdown-toggle"
             type="button"
             id="dropdownMenuButton"
-            data-toggle="dropdown"
-            aria-haspopup="true"
+            data-bs-toggle="dropdown"
             aria-expanded="false"
           >
             Dropdown button
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a style="cursor: pointer" class="dropdown-item">Fetch data</a>
+            <a style="cursor: pointer" class="dropdown-item">Save data</a>
           </div>
         </div>
       </ul>
