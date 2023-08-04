@@ -1,0 +1,9 @@
+<div>
+  <div *ngFor="let group of cars | groupBy : 'make'">
+    <h3>{{ group.category }}</h3>
+    <ul>
+      <li *ngFor="let car of group.cars">{{ car.model }}</li>
+    </ul>
+  </div>
+  <p>{{ name }}</p>
+</div>

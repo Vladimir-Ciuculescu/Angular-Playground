@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { ServersService } from '../servers.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CanComponentDeactivate } from './can-deactivate.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-server',
@@ -14,8 +14,9 @@ export class EditServerComponent implements OnInit, CanComponentDeactivate {
   server!: { id: number; name: string; status: string };
   serverName = '';
   serverStatus = '';
-  allowEdit = false;
+  allowEdit = true;
   changesSaved = false;
+  paramsSubscription!:Subscription
 
   constructor(
     private serversService: ServersService,
@@ -24,15 +25,22 @@ export class EditServerComponent implements OnInit, CanComponentDeactivate {
   ) {}
 
   ngOnInit() {
-    this.server = this.serversService.getServer(1);
+    const id = +this.route.snapshot.params['id']
+    this.server = this.serversService.getServer(id);
+    console.log(this.server)
     this.serverName = this.server.name;
     this.serverStatus = this.server.status;
 
-    this.route.queryParams.subscribe((params: Params) => {
-      this.allowEdit = params['allowEdit'] === '1' ? true : false;
-    });
+   
+    this.route.queryParams.subscribe((params:Params) => {
+     
+      const id = +this.route.snapshot.params['id']
+      this.server = this.serversService.getServer(id)
+    })
     this.route.fragment.subscribe();
   }
+
+  
 
   onUpdateServer() {
     this.serversService.updateServer(this.server.id, {
@@ -44,6 +52,12 @@ export class EditServerComponent implements OnInit, CanComponentDeactivate {
   }
 
   canDeactivate(): any {
-    alert('awd');
+    if(!this.allowEdit){
+      return true
+    } else if ((this.serverName !== this.server.name || this.serverStatus !== this.server.status) && !this.changesSaved){
+      return confirm('Do you really want to leave the page with unsaved changes ?')
+    } else {
+      return true
+    }
   }
 }
